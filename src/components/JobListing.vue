@@ -47,7 +47,7 @@ const truncatedDescription = computed(() => {
 
       <div class="mb-4 flex flex-col justify-between lg:flex-row">
         <div class="mb-3 text-orange-700">
-          <i class="pi pi-map-marker text-orange-700"></i>
+          <i class="text-orange-700 pi pi-map-marker"></i>
           {{ job.location }}
         </div>
         <a
