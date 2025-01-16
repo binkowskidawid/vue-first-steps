@@ -1,7 +1,7 @@
 <script setup lang="ts">
 type Props = {
-  title: string
-  subtitle: string
+  title?: string
+  subtitle?: string
 }
 
 withDefaults(defineProps<Props>(), {
