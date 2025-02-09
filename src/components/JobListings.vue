@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import JobListing from '@/components/JobListing.vue'
 import jobsData from '@/jobs.json'
 import type { Job } from '@/types/Job.ts'
 import { ref } from 'vue'
-import JobListing from '@/components/JobListing.vue'
 import { RouterLink } from 'vue-router'
 
 type Props = {
