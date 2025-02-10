@@ -1,6 +1,26 @@
 <script lang="ts" setup>
 import logo from '@/assets/img/logo.png'
-import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const navLinks = ref([
+  {
+    name: 'Home',
+    href: '/',
+  },
+  {
+    name: 'Jobs',
+    href: '/jobs',
+  },
+  {
+    name: 'Add Job',
+    href: '/jobs/add',
+  },
+])
+
+const isCurrentPath = (path: string) => router.currentRoute.value.path === path
 </script>
 
 <template>
@@ -16,20 +36,18 @@ import { RouterLink } from 'vue-router'
           <div class="md:ml-auto">
             <div class="flex space-x-2">
               <RouterLink
-                to="/"
-                class="rounded-md bg-green-900 px-3 py-2 text-white hover:bg-gray-900 hover:text-white"
-                >Home</RouterLink
-              >
-              <RouterLink
-                to="/jobs"
-                class="rounded-md px-3 py-2 text-white hover:bg-green-900 hover:text-white"
-                >Jobs</RouterLink
-              >
-              <RouterLink
-                to="/jobs/add"
-                class="rounded-md px-3 py-2 text-white hover:bg-green-900 hover:text-white"
-                >Add Job</RouterLink
-              >
+                v-for="link in navLinks"
+                v-bind:key="link.href"
+                :to="link.href"
+                :class="[
+                  'rounded-md',
+                  'px-3',
+                  'py-2',
+                  'text-white',
+                  isCurrentPath(link.href) ? 'bg-green-900' : 'hover:bg-gray-900 hover:text-white',
+                ]"
+                >{{ link.name }}
+              </RouterLink>
             </div>
           </div>
         </div>
