@@ -4,7 +4,6 @@ import type { Job } from '@/types/Job.ts'
 import axios from 'axios'
 import { onMounted, reactive } from 'vue'
 import { RouterLink } from 'vue-router'
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 type Props = {
   limit?: number
@@ -22,7 +21,7 @@ const state = reactive({
 
 const fetchJobs = async () => {
   try {
-    const response = await axios('http://localhost:8000/jobs')
+    const response = await axios('/api/jobs')
     state.jobs = (await response.data) as Job[]
   } catch (error) {
     console.error(error)
@@ -42,7 +41,7 @@ onMounted(fetchJobs)
 
     <!-- Show loading spinner when isLoading is true -->
     <div v-if="state.isLoading" class="m-auto">
-      <PulseLoader color="#38a169" size="10" />
+      <i class="pi pi-spin pi-spinner" style="font-size: 3rem"></i>
     </div>
 
     <!-- Show jobs when isLoading finished -->
